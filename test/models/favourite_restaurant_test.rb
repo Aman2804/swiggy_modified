@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DeliveryTest < ActiveSupport::TestCase
+class FavouriteRestaurantTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

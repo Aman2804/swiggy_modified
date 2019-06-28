@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CouponTypeTest < ActiveSupport::TestCase
+class VehicleTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

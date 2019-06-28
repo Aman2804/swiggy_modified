@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_23_113902) do
+ActiveRecord::Schema.define(version: 2019_06_28_102939) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "flat_no"
@@ -42,13 +42,6 @@ ActiveRecord::Schema.define(version: 2019_06_23_113902) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
-  create_table "coupon_types", force: :cascade do |t|
-    t.integer "coupon_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["coupon_id"], name: "index_coupon_types_on_coupon_id"
-  end
-
   create_table "coupons", force: :cascade do |t|
     t.string "type_of_coupon"
     t.integer "per_off"
@@ -58,21 +51,13 @@ ActiveRecord::Schema.define(version: 2019_06_23_113902) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "deliveries", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "vehicle"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_deliveries_on_user_id"
-  end
-
-  create_table "favourites", force: :cascade do |t|
+  create_table "favourite_restaurants", force: :cascade do |t|
     t.integer "user_id"
     t.integer "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["restaurant_id"], name: "index_favourites_on_restaurant_id"
-    t.index ["user_id"], name: "index_favourites_on_user_id"
+    t.index ["restaurant_id"], name: "index_favourite_restaurants_on_restaurant_id"
+    t.index ["user_id"], name: "index_favourite_restaurants_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -104,7 +89,7 @@ ActiveRecord::Schema.define(version: 2019_06_23_113902) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer "finaal_amount"
+    t.integer "final_amount"
     t.string "type_of_pay"
     t.integer "order_id"
     t.datetime "created_at", null: false
@@ -153,6 +138,15 @@ ActiveRecord::Schema.define(version: 2019_06_23_113902) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "vehicle"
+    t.string "vehicle_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
 end

@@ -20,7 +20,7 @@ class AddressesController < ApplicationController
   end
   
   def update
-    @address = @user.address.find(params[:id])
+    @address = current_user.address.find(params[:id])
     if @address.update(address_permited_params)
       redirect_to addresses_path
     else

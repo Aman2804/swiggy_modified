@@ -1,5 +1,18 @@
 <%@orders.length.times do |position|%>
-<% @order_items.each do |order_item| %>	
+<% @orders.order_items.each do |order_item| %>	
+	Item <%= Item.find(RestaurantItem.find(@order_items.first.restaurant_item_id).item_id).name%><br/>
+	Quantity:<%= order_item.quantity%>
+	<br />
+	<%= link_to "Accept", order_path(@orders[position].user_id,@orders[position].id,value: "Accept"), method: :patch %>||
+	<%= link_to "Reject", order_path(@orders[position].user_id,@orders[position].id,value: "Reject"), method: :patch %><br/>
+<% end %>
+Status_of_order:<%= @orders[position].status%><br/>
+<% end %>
+
+
+
+<%@orders.length.times do |position|%>
+<% @orders.order_items.each do |order_item| %>	
 	Item <%= Item.find(RestaurantItem.find(@order_items.first.restaurant_item_id).item_id).name%><br/>
 	Quantity:<%= order_item.quantity%>
 	<br />

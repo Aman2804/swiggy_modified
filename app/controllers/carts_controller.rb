@@ -1,12 +1,10 @@
 class CartsController < ApplicationController
 	def index
-		@restaurant = current_user.cart.cart_items.first.restaurant_item_id
-		@cart_items = current_user.cart.cart_items.all
-		@total = 0
+		@cart_items = current_user.cart.cart_items
 	end
 	def edit
 		@restaurant = current_user.cart.cart_items.first.restaurant_item_id
-		@cart_items = current_user.cart.cart_items.all
+		@cart_items = current_user.cart.cart_items
 	end
 	def update
 		@cart_item = CartItem.find(params[:cart_item_id])

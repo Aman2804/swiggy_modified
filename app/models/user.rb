@@ -10,11 +10,11 @@ class User < ApplicationRecord
 	validates :gender,											 	inclusion: {in:["Male","Female"],message: " should select"}
 	has_many :addresses, as: :addressable
   has_many :restaurants
-  has_one :favourite, dependent: :destroy
+  has_many :favourite_restaurants, dependent: :destroy
   has_one :cart, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :roles, dependent: :destroy
-  has_one :delivery, dependent: :destroy
+  has_one :vehicle, dependent: :destroy
 
   def action_after_commit
     @role = User.last.roles.build
