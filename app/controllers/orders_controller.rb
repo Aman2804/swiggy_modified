@@ -1,30 +1,28 @@
 class OrdersController < ApplicationController
 	def index
-		@orders = Order.where(restaurant_id: params[:restaurant_id]).includes(:order_items)
-		# @restaurant = Restaurant.find(params[:restaurant_id])
-		# @orders = Order.all.select{|order| order.restaurant_id == @restaurant.id}
-		# @order_items = @orders.map{|obj|p obj.id}.map{|order_id| OrderItem.all.select{|order_item| order_item.order_id == order_id }}.flatten 
+		@orders = Order.where(restaurant_id: params[:restaurant_id].to_i).includes(:order_items)
 	end
 	def create
-		@order = current_user.orders.create(restaurant_id: params[:restaurant_id],status: "pending")
-		current_user.cart.cart_items.pluck(:restaurant_item_id, :num_of_item).each do |id|
-		@order.order_items.create(restaurant_item_id: id.first,quantity: id.last)
+		cart_items = current_user.cart.cart_items
+		@order_ids = Array.new
+		params[:restaurants_id].each do |restaurantid|
+			@order = current_user.orders.create(restaurant_id: restaurantid,status: "pending")
+			cart_items.select{|obj| obj.restaurant_item.restaurant_id == restaurantid.to_i }.pluck(:restaurant_item_id, :num_of_item).each do |id|
+				@order.order_items.create(restaurant_item_id: id.first, quantity: id.last)
+				@order_ids << @order.id
+			end
 		end
-		current_user.cart.cart_items.destroy_all
-		redirect_to order_path(current_user,@order)
+		cart_items.destroy_all
+		redirect_to order_path(current_user,@order_ids)
 	end
 	def update
 		@order = Order.find(params[:id])
 		@order.status = params[:value]
-		@user = params[:users_id]
 		@order.update(params.permit(:status))
 		redirect_to orders_path(params[:users_id],restaurant_id: @order.restaurant_id)
-
 	end
 	def show
-		@current_order = Order.find(params[:id])
-		@order_items = @current_order.order_items.all
-		@items = @order_items.map{|order_item| Item.find(RestaurantItem.find(order_item.restaurant_item_id).item_id) }
+		@current_orders = current_user.orders.select{|order| order.status == "pending" || order.status == "Accept"}
 	end
 	private
 	def order_params

@@ -1,23 +1,15 @@
-<%@orders.length.times do |position|%>
-<% @orders.order_items.each do |order_item| %>	
-	Item <%= Item.find(RestaurantItem.find(@order_items.first.restaurant_item_id).item_id).name%><br/>
-	Quantity:<%= order_item.quantity%>
-	<br />
-	<%= link_to "Accept", order_path(@orders[position].user_id,@orders[position].id,value: "Accept"), method: :patch %>||
-	<%= link_to "Reject", order_path(@orders[position].user_id,@orders[position].id,value: "Reject"), method: :patch %><br/>
-<% end %>
-Status_of_order:<%= @orders[position].status%><br/>
-<% end %>
-
-
-
-<%@orders.length.times do |position|%>
-<% @orders.order_items.each do |order_item| %>	
-	Item <%= Item.find(RestaurantItem.find(@order_items.first.restaurant_item_id).item_id).name%><br/>
-	Quantity:<%= order_item.quantity%>
-	<br />
-	<%= link_to "Accept", order_path(@orders[position].user_id,@orders[position].id,value: "Accept"), method: :patch %>||
-	<%= link_to "Reject", order_path(@orders[position].user_id,@orders[position].id,value: "Reject"), method: :patch %><br/>
-<% end %>
-Status_of_order:<%= @orders[position].status%><br/>
+<% order_num = 0 %>
+<% @orders.each do |order| %>
+	<h3>
+		Order :<%= order_num = order_num + 1%>
+	</h3>
+	<% order.order_items.each do |order_item| %>	
+	<h4>
+		Item <%= order_item.restaurant_item.item.name%><br/>
+		Quantity:<%= order_item.quantity %>
+	</h4>
+	<% end %>
+	<%= link_to "Accept", order_path(order.user_id,order.id,value: "Accept"), method: :patch %>||
+		<%= link_to "Reject", order_path(order.user_id,order.id,value: "Reject"), method: :patch %><br/>
+	Status_of_order:<b><%= order.status%></b><br/>
 <% end %>

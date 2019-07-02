@@ -1,14 +1,19 @@
 
 <h2>Order History</h2>
+<% order_num = 0 %>
+<% @current_orders.each do |order| %>
+	<h3>Order No.<%= order_num = order_num + 1%></h3>
+	<% order.order_items.each do |order_item| %>
+		<% restaurant_item = order_item.restaurant_item %>
+	  <%= restaurant_item.item.name %><br>
+	  <%= restaurant_item.item.category %><br>
+	  <%= restaurant_item.item.type_of_dish %><br>
+	  <b><%= restaurant_item.restaurant.name %></b><br>
+	  Quantity :<%= order_item.quantity %><br>
+	  Price Per Item :<b><%= restaurant_item.price %></b><br>
+	<% end %>
 <h3>
-	<%= Restaurant.find(@current_order.restaurant_id).name %>
+		Status:<%= order.status %><br>
+		<%= "-----------------------" %>
 </h3>
-<% @items.each do |item|%>
-	Name:<%= item.name%><br/>
-	Category:<%= item.category%><br/>
-	Type:<%= item.type_of_dish%><br/>
-	<br/>
 <% end %>
-<h3>
-		Status:<%= @current_order.status %>	
-</h3>

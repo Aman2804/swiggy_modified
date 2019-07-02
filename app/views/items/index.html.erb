@@ -2,9 +2,9 @@
 	<%= item.name %>
 	<%= item.category %>
 	<%= item.type_of_dish %>
-	<% if current_user.roles.first.user_type == "admin" %>
 		<%= link_to 'edit', edit_item_path(item) %>
-		<% end %>
+		<%= link_to 'Delete', item_path(item), method: :delete, data: { confirm:
+          'Are you sure?' } %>
 	<br />
 <% end %>
 <%= link_to 'Add Item', new_item_path %>

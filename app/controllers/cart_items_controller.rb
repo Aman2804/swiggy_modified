@@ -1,4 +1,5 @@
 class CartItemsController < ApplicationController
+	before_action :find_cart_item,  only: [:edit,:update,:destroy]
 	def create
 		@restaurant = Restaurant.find(params[:restaurant_id])
 		@restaurant_item = @restaurant.restaurant_items.select{|item| item.item_id == params[:item_id].to_i}.first
@@ -6,14 +7,19 @@ class CartItemsController < ApplicationController
 		@cart_item.save
 		redirect_to add_path(restaurant_id: @restaurant.id)
 	end
+	def edit
+	end
+	def update
+		@cart_item.update(params.permit(:num_of_item))
+		redirect_to carts_path(current_user)
+	end
 	def destroy
-		@cart_item = CartItem.find(params[:id]).destroy
-		@restaurant = RestaurantItem.find(@cart_item.restaurant_item_id).restaurant_id
 		@cart_item.destroy
-		respond_to do |format|
-			format.js
-			format.html {redirect_to add_path(restaurant_id: @restaurant)}
-	    end
+		redirect_to carts_path(current_user)
+	end
+	private
+	def find_cart_item
+		@cart_item = CartItem.find(params[:id])
 	end
 		
 end
