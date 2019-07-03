@@ -13,3 +13,7 @@
 		<%= link_to "Reject", order_path(order.user_id,order.id,value: "Reject"), method: :patch %><br/>
 	Status_of_order:<b><%= order.status%></b><br/>
 <% end %>
+<% if order_num == 0%>
+	<h2>You have No order</h2>
+	<h2>-----******-----</h2>
+<% end %>

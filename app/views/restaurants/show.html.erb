@@ -1,39 +1,13 @@
 <h1><%= @restaurant.name.capitalize %></h1>
-<% @items.each do |item| %>
-	<%= item.name %>
-	<%= item.category %>
-	<%= item.type_of_dish %>
-	<% if current_user.roles.first.user_type == "admin" %>
-		<%= link_to 'edit', edit_item_path(item) %>
-	<% end %>
-	<% unless current_user.roles.select{|role| role.user_type == "restaurant"}.empty? %>
-		<% if @restaurant.restaurant_items.select{|obj| obj.item_id == item.id }.empty?%>
-			<%= form_tag restaurant_items_path(@restaurant), method: :post do %>
-				Price <%= text_field_tag :price %>
-				<%= hidden_field_tag 'item',  "#{item.id}" %>
-				<%= hidden_field_tag 'restaurant_id', "#{@restaurant.id}" %>
-				<%= button_tag "Add to menu", id: "button" %>
-			<% end %>
-		<% else %>
-			<%= button_to 'Remove Item',restaurant_item_path(@restaurant,item), method: :delete %>
-		<% end %>
-	<% end %><br />
-<% end %> 
-	<%= link_to 'Add Items', new_item_path %>
-<script>
-	$(document).ready(function() {
-		$("#button").click(function(){
-	    var price = $('#price').val();
-	    var item_id = $('#item_id').val();
-	    var restaurant  = $('#restaurant').val();
-		  $.ajax({
-		   	url: '/restaurants/'+ restaurant +'/restaurant_items',
-		    type: "POST",
-		    data: {},
-		    success: function(data) {
-		      alert('successfully');
-		     }
-		   });
-	  });
-	});
-</script>
+<% @restaurant.restaurant_items.each do |restaurant_item| %>
+	<% item = restaurant_item.item %>
+	<h3>
+		Menu List
+	</h3>
+	<b><%= item.name%></b><br>
+	<%= item.category %><br>
+	<%= item.type_of_dish %><br>
+	<%= restaurant_item.price %><br>
+	<%= button_to 'Remove Item',restaurant_item_path(@restaurant,restaurant_item), method: :delete %><br>
+<% end %>
+<%= link_to 'Add Items', new_item_path %>

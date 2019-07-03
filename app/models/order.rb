@@ -1,8 +1,8 @@
 class Order < ApplicationRecord
 	belongs_to :user
-	has_many :order_items
+	has_many :order_items, dependent: :destroy
 	has_many :restaurant_items, through: :order_items
-	has_one :payment
+	has_one :payment, dependent: :destroy
 	belongs_to :restaurant
-	has_one :role
+	has_one :role, dependent: :destroy
 end

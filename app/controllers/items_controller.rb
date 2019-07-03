@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 	before_action :check_user_role
 	before_action :find_item,only: [:edit,:update,:destroy]
 	def index
+		# @restaurant_id = params[:restaurant_id]
 		@items = Item.all
 	end
 	def new

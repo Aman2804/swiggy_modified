@@ -2,9 +2,10 @@
 	<%= item.name %>
 	<%= item.category %>
 	<%= item.type_of_dish %>
-		<%= link_to 'edit', edit_item_path(item) %>
-		<%= link_to 'Delete', item_path(item), method: :delete, data: { confirm:
-          'Are you sure?' } %>
+	<%# link_to "Add this Item to menu", new_restaurant_item_path(@restaurant_id,item: item) %>||
+	<%= link_to 'edit', edit_item_path(item) %>||
+	<%= link_to 'Delete', item_path(item), method: :delete, data: { confirm:
+      'Are you sure?' } %>
 	<br />
 <% end %>
 <%= link_to 'Add Item', new_item_path %>

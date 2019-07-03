@@ -1,5 +1,6 @@
 class RestaurantItemsController < ApplicationController
 	def new
+		@item = Item.all
 		@restaurant = Restaurant.find(params[:restaurants_id])
 		@restaurant_item = @restaurant.restaurant_items.build
 	end
@@ -7,15 +8,14 @@ class RestaurantItemsController < ApplicationController
 	def create
 		@restaurant = Restaurant.find(params[:restaurants_id])
 		@restaurant_item = @restaurant.restaurant_items.build
-		@restaurant_item[:item_id] = params[:item]
-		@restaurant_item[:price] = params[:price]
+		@restaurant_item[:item_id] = params[:restaurant_item][:item].to_i
+		@restaurant_item[:price] =  params[:restaurant_item][:price].to_i
 		@restaurant_item.save
-		redirect_to restaurant_path(current_user,@restaurant)
+		redirect_to new_restaurant_item_path(@restaurant)
 	end
 	def destroy
-		@restaurant = Restaurant.find(params[:restaurants_id])
-		@restaurant.restaurant_items.select{|obj| obj.item_id == params[:id].to_i }.first.destroy
-		redirect_to restaurant_path(current_user,@restaurant)
+		RestaurantItem.find(params[:id]).destroy
+		redirect_to restaurant_path(current_user,params[:restaurants_id])
 	end
-
 end
+ 

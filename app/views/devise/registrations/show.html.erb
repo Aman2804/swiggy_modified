@@ -10,9 +10,12 @@ Role:<%= current_user.roles.first.user_type %><br />
 <% end %><br />
 <%= link_to 'Make an order', restaurants_list_path %>||
 <%= link_to 'Create new Address', new_address_path(current_user) %>||
-<%= link_to 'Show all Address',  addresses_path(current_user) %>||<br />
+<%= link_to 'Show all Address',  addresses_path(current_user) %>||
+<%= link_to 'Go to cart',  carts_path(current_user) %>||
+<%= link_to 'Show all Order\'s',  order_path(current_user,4) %>||<br />
 <%= link_to 'Change your role', roles_path(current_user) %>||
 <%= link_to 'Register as an Restaurants',  new_restaurant_path(current_user) %>||
 <%= link_to 'Show All Restaurant\'s', restaurants_path(current_user) %>
 <br />
+<%= link_to '<<Back', :back %><br>
 <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>

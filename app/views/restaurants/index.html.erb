@@ -1,6 +1,8 @@
 <% @restaurants.each do |restaurant|%>
   <%= restaurant.name%>
   	<%= link_to 'edit', edit_restaurant_path(current_user, restaurant)%>||
+  	<%= link_to "Add Item to menu", new_restaurant_item_path(restaurant) %><br>
+  	<%= link_to "Add Item's", new_item_path %>||
   	<%= link_to "See All Order's", orders_path(current_user,restaurant_id: restaurant.id)%>
   	<br />	
 <% end %>

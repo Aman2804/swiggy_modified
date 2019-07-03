@@ -1,4 +1,6 @@
+<% address_num = 0 %>
 <% @addresses.each do |add|%>
+	<b>Address<%= address_num = address_num + 1 %></b>
   <p>
   <%= add.flat_no %><br />
   <%= add.location %><br />
@@ -8,6 +10,9 @@
   <%= add.flat_no %>
   <%= link_to 'edit', edit_address_path(current_user,add) %>
   </p>
+<% end %>
+<% if address_num == 0 %>
+	<h2>Please Add Address For Delivery</h2>
 <% end %>
 <%= link_to 'Go to User profile', profile_path %>
 <br/>

@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # POST /resource
+  # POST /resource 
   def create
     super
     # if current_user.roles.first.user_type == "restaurant"

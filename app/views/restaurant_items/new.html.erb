@@ -1,6 +1,17 @@
-<h5>Set the price</h5>
-	<%= form_for @restaurant_item do |item|%>
-		<%= item.label :Price%>
-		<%= item.text_field :price%>
-		<%= item.submit 'Add'%>
+<% item_num = 0 %>
+	<% @item.each do |item|%>
+		<% if @restaurant.restaurant_items.select{|obj| obj.item == item}.empty? %>
+			<b><%= item_num = item_num + 1%>.<%= item.name %></b>
+			<%= form_for @restaurant_item do |restaurant_item|%>
+				<%= restaurant_item.label :Price %>
+				<%= restaurant_item.text_field :price %>
+				<%= restaurant_item.hidden_field :item, :value => item.id %>
+				<%= restaurant_item.submit 'Add' %><br>
+			<% end %>
+		<% end %>	
 	<% end %>
+<% if item_num == 0 %>
+	<h4>All present item are in menu</h4>
+<% end %>
+<%= link_to 'Add Items', new_item_path %><br>
+<%= link_to "Go to restaurant profile",restaurant_path(current_user,@restaurant) %>
