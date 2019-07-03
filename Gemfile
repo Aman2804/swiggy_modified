@@ -5,6 +5,8 @@ ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
+#gem for boot strap
+gem 'bootstrap-sass'
 #graphviz gem for the base of erd gem
 gem 'ruby-graphviz'
 # devise gem foor the registration
