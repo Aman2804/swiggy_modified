@@ -1,4 +1,4 @@
-<!-- <nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -9,69 +9,57 @@
       <b><a class="navbar-brand" href="/">Swiggy</a></b>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#myPage">HOME</a></li>
-        <li><a href="#band">BAND</a></li>
-        <li><a href="#tour">TOUR</a></li>
-        <li><a href="#contact">CONTACT</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Merchandise</a></li>
-            <li><a href="#">Extras</a></li>
-            <li><a href="#">Media</a></li> 
-          </ul>
-        </li>
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
-      </ul>
+    	<% if user_signed_in? %>
+	      <ul class="nav navbar-nav">
+	        <li><a href="<%= restaurants_list_path %>">Make Order</a></li>
+	        <li class="dropdown">
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">	Address
+		          <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a class="dropdown-item" href="<%=new_address_path(current_user)%>">Add address</a></li>
+		            <li><a class="dropdown-item" href="<%=addresses_path(current_user)%>">Show all Address</a></li>
+		          </ul>
+		        </li>
+		        <% unless current_user.roles.select{|obj| obj.user_type == "restaurant"}.empty? %>
+		        <li class="dropdown">
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">	My Restaurant
+		          <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a class="dropdown-item" href="<%=restaurants_path(current_user)%>">Restaurant's</a></li>
+		            <li><a class="dropdown-item" href="<%=orders_path(current_user)%>">All Orders</a></li>
+		            <li><a class="dropdown-item" href="<%= new_restaurant_path(current_user) %>">Register a Restaurant</a></li>
+		          </ul>
+		        </li>
+		        <% end %>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+		        <% if current_user.cart.present? %>
+		        	<li><a href="<%= carts_path(current_user) %>"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+		         <% end %>
+		         <li class="dropdown">
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Roles
+		          <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a class="dropdown-item" href="<%= new_role_path(current_user) %>">Make Role</a></li>
+		            <li><a class="dropdown-item" href="<%=roles_path(current_user)%>">Change Role</a></li>
+		          </ul>
+		        </li>
+		        <li class="dropdown">
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>Your Account
+		          <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a class="dropdown-item" href="/profile">Account</a></li>
+		            <li><a class="dropdown-item" href="<%=order_path(current_user,4)%>">Orders</a></li>
+		            <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li> 
+		          </ul>
+		        </li>
+	      </ul>
+      <% else %>
+        <ul class="nav navbar-nav navbar-right">
+        	<li><a href="<%= new_user_session_path %>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        	<li><a href="<%= new_user_registration_path %>">SignUP</a></li>
+        </ul>
+    	<% end %>
     </div>
   </div>
 </nav>
- -->
-
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Swiggy</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Category<span class="sr-only">(current)</span></a>&nbsp;
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav navbar-right">
-      <% if user_signed_in? %>
-    <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
-    <% else %>
-    <ul class="navbar-nav navbar-right">
-      <li><%= link_to 'Sign_in', new_user_session_path %></li>&nbsp;
-      <li><%= link_to 'Sign_up', new_user_registration_path  %></li>&nbsp;
-    </ul>
-    <% end %>
-  </ul>
-    </div>
-    
-  </nav>
-
-<!-- https://www.w3schools.com/bootstrap/bootstrap_theme_band.asp -->

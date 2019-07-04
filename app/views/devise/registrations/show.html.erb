@@ -1,21 +1,13 @@
-Name:<%= current_user.name %><br />
-Email:<%= current_user.email %><br />
-Contact:<%= current_user.contact %><br />
-City:<%= current_user.city %><br />
-Role:<%= current_user.roles.first.user_type %><br />
-<% if current_user.roles.first.user_type == "restaurant"%>
-	<% current_user.restaurants.map{|obj|obj.name}.each do |restaurant_name|%>
-		<%= restaurant_name %>
+<div class="container" style="color: white;font-size: 25px;">
+	<h2>Account</h2>
+	Name: <b><%= current_user.name %></b><br />
+	Email: <b><%= current_user.email %></b><br />
+	Contact: <b><%= current_user.contact %></b><br />
+	City: <b><%= current_user.city %></b><br />
+	Role: <b><%= current_user.roles.first.user_type %></b><br />
+	<% if current_user.roles.first.user_type == "restaurant"%>
+		<% current_user.restaurants.map{|obj|obj.name}.each do |restaurant_name|%>
+			<b><%= restaurant_name %></b>
+		<% end %>
 	<% end %>
-<% end %><br />
-<%= link_to 'Make an order', restaurants_list_path %>||
-<%= link_to 'Create new Address', new_address_path(current_user) %>||
-<%= link_to 'Show all Address',  addresses_path(current_user) %>||
-<%= link_to 'Go to cart',  carts_path(current_user) %>||
-<%= link_to 'Show all Order\'s',  order_path(current_user,4) %>||<br />
-<%= link_to 'Change your role', roles_path(current_user) %>||
-<%= link_to 'Register as an Restaurants',  new_restaurant_path(current_user) %>||
-<%= link_to 'Show All Restaurant\'s', restaurants_path(current_user) %>
-<br />
-<%= link_to '<<Back', :back %><br>
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+</div>

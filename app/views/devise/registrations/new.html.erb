@@ -1,55 +1,53 @@
 <h2>Sign up</h2>
+<div class="container">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.label :Role %><br />
+    <div class="dropdown">
+      <%= f.select(:user_type, options_for_select([['customer', 'user'], ['Distributor', 'restaurant'], ['Rider', 'delivery_patner']],'user'), {class: "btn btn-primary dropdown-toggle"})%>
+    </div>
+    <div class="form-group" >
+      <%= f.label :Name %><br />
+      <%= f.text_field :name ,class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :Email %><br/>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :Role %><br />
-    <%= f.select(:user_type, options_for_select([['customer', 'user'], ['Distributor', 'restaurant'], ['Rider', 'delivery_patner']],'user')) %>
+    <div class="form-group">
+      <%= f.label :gender %><br />
+      <%= f.radio_button :gender, 'Male' %>Male
+      <%= f.radio_button :gender, 'Female' %>Female
+    </div>
 
-  </div>
+    <div class="form-group">
+      <%= f.label :City %><br />
+      <%= f.text_field :city ,class: "form-control"%>
+    </div>
 
-  <div class="field">
-    <%= f.label :Name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :Email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :Contact %><br />
+      <%= f.text_field :contact ,class: "form-control"%>
+    </div>
 
-  <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.radio_button :gender, 'Male' %>Male
-    <%= f.radio_button :gender, 'Female' %>Female
-  </div>
+    <div class="form-group">
+      <%= f.label :Password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password",class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :City %><br />
-    <%= f.text_field :city %>
-  </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :Contact %><br />
-    <%= f.text_field :contact %>
-  </div>
+    <div class="actions">
+      <%= f.submit "Sign up",class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
 
-  <div class="field">
-    <%= f.label :Password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

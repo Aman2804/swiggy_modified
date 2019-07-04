@@ -9,8 +9,7 @@
   <%= add.text_field :city %><br />
   <%= add.label :landmark %><br />
   <%= add.text_field :landmark %><br />
-  <%= add.label :address_type %><sub>(not mandatory)<sub/><br />	
+  <%= add.label :address_type %><sub>(not mandatory)</sub><br />	
   <%= add.text_field :address_type %><br />
-  <%= add.submit 'Add address'%>
+  <%= add.submit 'Add address',class: "btn btn-inverse"%>
 <% end %>
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>

@@ -1,9 +1,2 @@
-<h1>Welcome To Swiggy</h1>
-	<%  if user_signed_in? %>
-		<%= link_to 'Go to Profile', profile_path%><br />
-		<%= link_to 'User Sign out', destroy_user_session_path, method: :delete %>
-	<% else %>
-		<%= link_to 'User Sign In', new_user_session_path %>||
-		<%= link_to 'User Sign UP', new_user_registration_path %>
-	<% end %>
+
 	

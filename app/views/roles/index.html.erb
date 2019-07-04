@@ -1,6 +1,6 @@
 <% @roles.each do |role|%>
   <%= role.user_type%>
-  <%= link_to 'edit', edit_role_path(current_user,role)%><br />
+  <%= link_to 'edit', edit_role_path(current_user,role)%>,
+  <%= link_to 'Delete', role_path(current_user,role), method: :delete %><br />
 <% end %><br />
 <%= link_to 'Make a new Role', new_role_path(current_user)%><br />
-<%= link_to 'User Sign out', destroy_user_session_path, method: :delete %>
