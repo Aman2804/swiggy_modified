@@ -1,53 +1,61 @@
-<h2>Sign up</h2>
-<div class="container">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+<div class="container" style="align-content:center" >
+  <div class="d-flex justify-content-center h-100" style="margin-left: 400px">
+    <div class="card">
+      <div class="card-header" style="margin-left: 115px">
+        <h3>Sign up</h3>
+      </div>
+      <div class="card-body" style="align-content: center;">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <div class="error_messages">
+            <%= render "devise/shared/error_messages", resource: resource %>
+          </div>
+            <%= f.label :Role %><br />
+          <div class="dropdown">
+            <%= f.select(:user_type, options_for_select([['customer', 'user'], ['Distributor', 'restaurant'], ['Rider', 'delivery_patner']],'user'), {}, {class: "btn btn-primary dropdown-toggle ", style: 'background-color:#333'})%>
+          </div>
+          <div class="form-group" >
+            <%= f.label :Name %><br />
+            <%= f.text_field :name ,class: "form-control"%>
+          </div>
+          <div class="form-group">
+            <%= f.label :Email %><br/>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
+          </div>
 
-      <%= f.label :Role %><br />
-    <div class="dropdown">
-      <%= f.select(:user_type, options_for_select([['customer', 'user'], ['Distributor', 'restaurant'], ['Rider', 'delivery_patner']],'user'), {class: "btn btn-primary dropdown-toggle"})%>
-    </div>
-    <div class="form-group" >
-      <%= f.label :Name %><br />
-      <%= f.text_field :name ,class: "form-control"%>
-    </div>
-    <div class="form-group">
-      <%= f.label :Email %><br/>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
-    </div>
+          <div class="form-group">
+            <%= f.label :gender %><br />
+            <%= f.radio_button :gender, 'Male' %>Male
+            <%= f.radio_button :gender, 'Female' %>Female
+          </div>
 
-    <div class="form-group">
-      <%= f.label :gender %><br />
-      <%= f.radio_button :gender, 'Male' %>Male
-      <%= f.radio_button :gender, 'Female' %>Female
-    </div>
+          <div class="form-group">
+            <%= f.label :City %><br />
+            <%= f.text_field :city ,class: "form-control"%>
+          </div>
 
-    <div class="form-group">
-      <%= f.label :City %><br />
-      <%= f.text_field :city ,class: "form-control"%>
-    </div>
+          <div class="form-group">
+            <%= f.label :Contact %><br />
+            <%= f.text_field :contact ,class: "form-control"%>
+          </div>
 
-    <div class="form-group">
-      <%= f.label :Contact %><br />
-      <%= f.text_field :contact ,class: "form-control"%>
-    </div>
+          <div class="form-group">
+            <%= f.label :Password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password",class: "form-control" %>
+          </div>
 
-    <div class="form-group">
-      <%= f.label :Password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password",class: "form-control" %>
-    </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control" %>
+          </div>
 
-    <div class="form-group">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control" %>
+          <div class="actions">
+            <%= f.submit "Sign up",class: "btn btn-primary ", style: 'width:-webkit-fill-available;background-color:#333' %>
+          </div>
+        <% end %>
+      </div>
     </div>
-
-    <div class="actions">
-      <%= f.submit "Sign up",class: "btn btn-primary" %>
-    </div>
-  <% end %>
+  </div>
 </div>
-

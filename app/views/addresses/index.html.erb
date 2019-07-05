@@ -1,19 +1,21 @@
 <% address_num = 0 %>
-<% @addresses.each do |add|%>
-	<b>Address<%= address_num = address_num + 1 %></b>
-  <p>
-  <%= add.flat_no %><br />
-  <%= add.location %><br />
-  <%= add.city %><br />
-  <%= add.landmark %><br />
-  <%= add.address_type %><br />
-  <%= add.flat_no %>
-  <%= link_to 'edit', edit_address_path(current_user,add) %>
-  </p>
-<% end %>
-<% if address_num == 0 %>
-	<h2>Please Add Address For Delivery</h2>
-<% end %>
-<%= link_to 'Go to User profile', profile_path %>
-<br/>
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+<div class="container" style="margin-left: 54px">
+  <% @addresses.each do |add|%>
+  	<h3 class="style-color"><b><%= address_num = address_num + 1 %>. Address</b></h3>
+    <p class="style-color">
+      <b>Flat No. </b> <%= add.flat_no %><br />
+      <b>Location. </b><%= add.location %><br />
+      <b>City. </b><%= add.city %><br />
+      <b>Landmark. </b><%= add.landmark %><br />
+      <b>Add Type. </b><%= add.address_type %><br />
+      <a href="<%= edit_address_path(current_user,add) %>" ><i class="fa fa-pencil fa-2x" aria-hidden="true" style="color: black" ></i></a>&nbsp;
+      <a href="<%= address_path(current_user,add) %>" data-method="delete" ><i class="fa fa-trash fa-2x" aria-hidden="true" style="color: red" ></i></a>&nbsp;
+    </p>
+  <% end %>
+  <% if address_num == 0 %>
+  	<h2>Please Add Address For Delivery</h2>
+  <% end %>
+  <a href="<%= new_address_path(current_user) %>" ><i class="fa fa-plus fa-2x" aria-hidden="true" style="color: #333">Add More</i></a>
+
+  <h2><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></h2>
+</div>
