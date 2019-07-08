@@ -32,17 +32,26 @@ class RolesController < ApplicationController
 	end
 
 	def destroy
-		if @role.user_type == "restaurant"
-			@role.destroy
-			current_user.restaurants.destroy
-			redirect_to roles_path
-		elsif @role.user_type == "delivery patner"
-			# @role.destroy
-			# redirect_to roles_path
+		if current_user.roles.count > 1
+			if @role.user_type == "restaurant"
+				@role.destroy
+				current_user.restaurants.destroy
+				current_user.update(current_role: current_user.roles.last.user_type)
+				redirect_to roles_path
+			elsif @role.user_type == "delivery_patner"
+				@role.destroy
+				current_user.vehicle.destroy
+				current_user.update(current_role: current_user.roles.last.user_type)
+				redirect_to roles_path
+			else
+				@role.destroy
+				current_user.cart.destroy
+				current_user.update(current_role: current_user.roles.last.user_type)
+				redirect_to roles_path
+			end
 		else
-			@role.destroy
-			redirect_to roles_path
-		end	
+			redirect_back(fallback_location: root_path)
+		end
 	end
 
 	private

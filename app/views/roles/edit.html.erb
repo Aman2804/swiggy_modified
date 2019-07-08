@@ -1,4 +1,6 @@
-<%= form_for @role do |role| %>
-<%= role.select(:user_type, options_for_select([['customer', 'user'], ['Distributor', 'restaurant'], ['Rider', 'delivery patner']],@role.user_type)) %><br />
-<%= role.submit 'Save'%>
-<% end %>
+<div class="container">
+	<%= form_for @role do |role| %>
+	<%= role.select(:user_type, options_for_select([['customer', 'user'], ['Distributor', 'restaurant'], ['Rider', 'delivery patner']],@role.user_type), {}, {class: "btn btn-primary dropdown-toggle ", style: 'background-color:#333'}) %>
+	<%= role.submit 'Save', class: "btn btn-primary", style: 'background-color:#333'%>
+	<% end %>
+</div>

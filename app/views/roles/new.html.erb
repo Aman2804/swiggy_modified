@@ -1,7 +1,7 @@
 <div class="container">
-<%= form_for @role  do |role| %>
-	<%= role.label :Role %>
-	<%= role.select(:user_type, options_for_select([['customer', 'user'], ['Distributor', 'restaurant'], ['Rider', 'delivery_patner']],'user'), {}, {class: "btn btn-primary dropdown-toggle"}) %>
-	<%= role.submit "Add Role",class: "btn btn-primary" %>
-<% end %>
+		<%= form_for @role  do |role| %>
+			<h3><%= role.label "Make New Role" %></h3>
+			<%= role.select(:user_type, options_for_select([['customer', 'user'], ['Distributor', 'restaurant'], ['Rider', 'delivery_patner']],'user'), {}, {class: "btn btn-primary dropdown-toggle ", style: 'background-color:#333'}) %>
+			<%= role.submit "Add Role", class: "btn btn-primary", style: 'background-color:#333' %>
+		<% end %>
 </div>

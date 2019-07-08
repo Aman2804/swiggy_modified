@@ -27,6 +27,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #profile
   def show
   end
+  def current_role
+    @arr = Array.new
+    current_user.roles.map do |e|
+      if e.user_type == "user"
+        @arr << ['customer', 'user']
+      elsif e.user_type == "restaurant"
+        @arr << ['Distributor', 'restaurant']
+      elsif e.user_type == "delivery_patner"
+        @arr << ['Rider', 'delivery_patner']
+      end
+    end
+  end
+  def update_current_role
+    current_user.update(current_role: params[:user][:current_role])
+    redirect_to current_role_path
+  end
   def add
     @restaurant = Restaurant.find(params[:restaurant_id])
     @restaurant_items = RestaurantItem.all.map{|restaurant_item| restaurant_item.item_id if restaurant_item.restaurant_id == @restaurant.id}
@@ -64,12 +80,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute,:name,:contact,:gender,:city,:user_type])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute,:name,:contact,:gender,:city,:user_type,:current_role])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute,:name,:contact,:gender,:city,:user_type])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute,:name,:contact,:gender,:city,:user_type,:current_role])
   end
   def session_check
     unless user_signed_in?

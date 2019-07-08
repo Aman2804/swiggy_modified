@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       get 'restaurants_list', to: 'users/registrations#restaurants_list'
       get 'add', to: 'users/registrations#add'
       get 'search', to: 'user/registrations#search'
+      get 'current_role', to: 'users/registrations#current_role'
+      patch 'update_current_role', to: 'users/registrations#update_current_role'
   end
 
   scope path: 'users/:users_id' do

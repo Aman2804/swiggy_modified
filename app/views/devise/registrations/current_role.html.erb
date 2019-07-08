@@ -1,0 +1,7 @@
+<div class="container">
+	<h3><b>Change Current Role</b></h3>
+		<%= form_for current_user,url: update_current_role_path, method: :patch do |f|%>
+		<%= f.select(:current_role, options_for_select(@arr,current_user.current_role), {}, {class: "btn btn-primary dropdown-toggle ", style: 'background-color:#333'})%>
+		<%= f.submit "Change Role",class: "btn btn-primary", style: 'background-color:#333' %>
+		<% end %>
+</div>

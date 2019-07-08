@@ -1,6 +1,11 @@
-<% @roles.each do |role|%>
-  <%= role.user_type%>
-  <%= link_to 'edit', edit_role_path(current_user,role)%>,
-  <%= link_to 'Delete', role_path(current_user,role), method: :delete %><br />
-<% end %><br />
-<%= link_to 'Make a new Role', new_role_path(current_user)%><br />
+<div style="color: black">
+	<h3>
+		Roles
+	</h3>
+	<% @roles.each do |role|%>
+	  <h4>Role: <b><%= role.user_type%></b></h4>
+	  <a href="<%= edit_role_path(current_user,role) %>" ><i class="fa fa-pencil fa-2x" aria-hidden="true" style="color: black" ></i></a>&nbsp;
+	  <a href="<%= role_path(current_user,role) %>" data-method="delete" onclick="return confirm('Are you sure?')"><i class="fa fa-trash fa-2x" aria-hidden="true" style="color: red" ></i></a>&nbsp;
+	<% end %><br />
+</div>
+<a href="<%= new_role_path(current_user) %>" ><i class="fa fa-plus fa-2x" aria-hidden="true" style="color: #333">Make a new Role</i></a>
