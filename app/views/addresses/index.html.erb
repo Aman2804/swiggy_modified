@@ -9,7 +9,7 @@
       <b>Landmark. </b><%= add.landmark %><br />
       <b>Add Type. </b><%= add.address_type %><br />
       <a href="<%= edit_address_path(current_user,add) %>" ><i class="fa fa-pencil fa-2x" aria-hidden="true" style="color: black" ></i></a>&nbsp;
-      <a href="<%= address_path(current_user,add) %>" data-method="delete" ><i class="fa fa-trash fa-2x" aria-hidden="true" style="color: red" ></i></a>&nbsp;
+      <a href="<%= address_path(current_user,add) %>" data-method="delete" onclick="return confirm('Are you sure?')"><i class="fa fa-trash fa-2x" aria-hidden="true" style="color: red" ></i></a>&nbsp;
     </p>
   <% end %>
   <% if address_num == 0 %>

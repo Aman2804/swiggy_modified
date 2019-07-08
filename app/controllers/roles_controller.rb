@@ -16,6 +16,7 @@ class RolesController < ApplicationController
 		if current_user.roles.last.user_type == "restaurant"
 			redirect_to new_restaurant_path(current_user)
 		elsif current_user.roles.last.user_type == "delivery_patner"
+			redirect_to new_vehicle_path(current_user)
 		elsif current_user.roles.last.user_type == "user"
 				current_user.create_cart
 				redirect_to profile_path

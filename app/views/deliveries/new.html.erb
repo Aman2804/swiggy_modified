@@ -1,6 +1,0 @@
-<%= form_for @delivery do |delivery|%>
-	<%= delivery.label :Vehicle_type %><br />
-	<%= delivery.select(:vehicle, options_for_select([['Bicycle','bicycle'],['Bike','bike']],'bike')) %>
-	<%= delivery.submit 'Submit'%>
-
-<% end %>

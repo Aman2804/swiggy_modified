@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_28_102939) do
+ActiveRecord::Schema.define(version: 2019_07_06_120234) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "flat_no"
@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(version: 2019_06_28_102939) do
   end
 
   create_table "coupons", force: :cascade do |t|
-    t.string "type_of_coupon"
-    t.integer "per_off"
     t.string "condition"
     t.string "coupon_name"
+    t.integer "per_off"
+    t.string "type_of_coupon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

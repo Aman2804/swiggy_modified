@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :coupons
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root "welcome#index"
   get 'welcome/index'
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   	resources :addresses, except: :show
     resources :restaurants 
     resources :roles
-    resources :deliveries
+    resources :vehicles
     resources :carts
     resources :orders
 	end

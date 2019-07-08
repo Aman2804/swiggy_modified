@@ -1,0 +1,22 @@
+<p>
+  <strong>Condition:</strong>
+  <%= @coupon.condition %>
+</p>
+
+<p>
+  <strong>Coupon name:</strong>
+  <%= @coupon.coupon_name %>
+</p>
+
+<p>
+  <strong>Per off:</strong>
+  <%= @coupon.per_off %>
+</p>
+
+<p>
+  <strong>Type of coupon:</strong>
+  <%= @coupon.type_of_coupon %>
+</p>
+
+<%= link_to 'Edit', edit_coupon_path(@coupon) %> |
+<%= link_to 'Back', coupons_path %>
