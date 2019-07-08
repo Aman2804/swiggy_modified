@@ -1,21 +1,21 @@
 <div class="container" style="font-size: 25px;margin-left: 450px">
 	<h2>Account</h2>
 	<div class="card">
-		      <div class="card-body" style="align-content: center;width:200px;">
-	Name: <b><%= current_user.name %></b><br />
-	Email: <b><%= current_user.email %></b><br />
-	Contact: <b><%= current_user.contact %></b><br />
-	City: <b><%= current_user.city %></b><br />
-	Role: <b><%= current_user.roles.first.user_type %></b><br />
-	<% if current_user.roles.select{|role| role.user_type == "restaurant"}.present?%>
-		<% current_user.restaurants.pluck(:name).each_with_index do |restaurant_name,i|%>
-			<%= i+1 %>.Restaurant :<b><%= restaurant_name %></b><br>
-		<% end %>
-	<% end %>
-	<% if current_user.roles.select{|role| role.user_type == "delivery_patner"}.present?%>
-		Vehicle Type :<%= current_user.vehicle.vehicle.capitalize %><br>
-		Vehicle Name :<%= current_user.vehicle.vehicle_name %>
-	<% end %>
-</div>
-</div>
+		<div class="card-body" style="align-content: center;width:auto;">
+			Name: <b><%= current_user.name %></b><br />
+			Email: <b><%= current_user.email %></b><br />
+			Contact: <b><%= current_user.contact %></b><br />
+			City: <b><%= current_user.city %></b><br />
+			Role: <b><%= current_user.roles.first.user_type %></b><br />
+			<% if current_user.roles.select{|role| role.user_type == "restaurant"}.present?%>
+				<% current_user.restaurants.pluck(:name).each_with_index do |restaurant_name,i|%>
+				<%= i+1 %>.Restaurant :<b><%= restaurant_name %></b><br>
+				<% end %>
+			<% end %>
+			<% if current_user.roles.select{|role| role.user_type == "delivery_patner"}.present?%>
+				Vehicle Type :<%= current_user.vehicle.vehicle.capitalize %><br>
+				Vehicle Name :<%= current_user.vehicle.vehicle_name %>
+			<% end %>
+		</div>
+	</div>
 </div>

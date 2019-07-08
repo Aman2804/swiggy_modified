@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  attr_accessor :user_type
+  attr_accessor :user_type,:search
   after_commit :action_after_commit
   devise :database_authenticatable, :registerable,
 		 		 :recoverable, :rememberable, :validatable
@@ -22,6 +22,14 @@ class User < ApplicationRecord
     @role.save
     if User.last.roles.first.user_type == "user"
       User.last.create_cart
+    end
+  end
+
+  def self.search(search)
+    if search
+      Item.where("name Like ?","%#{search}%").map{|o| o.restaurants}.first
+    else
+      Restaurant.all
     end
   end
 end

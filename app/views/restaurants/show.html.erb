@@ -1,13 +1,15 @@
-<h1><%= @restaurant.name.capitalize %></h1>
-<% @restaurant.restaurant_items.each do |restaurant_item| %>
-	<% item = restaurant_item.item %>
-	<h3>
-		Menu List
-	</h3>
-	<b><%= item.name%></b><br>
-	<%= item.category %><br>
-	<%= item.type_of_dish %><br>
-	<%= restaurant_item.price %><br>
-	<%= button_to 'Remove Item',restaurant_item_path(@restaurant,restaurant_item), method: :delete %><br>
-<% end %>
-<%= link_to 'Add Items', new_item_path %>
+<a href="<%= restaurants_path(current_user)%>" style="color: white;font-size:x-large"><i class="fa fa-arrow-left" aria-hidden="true">Back</i></a>
+<h1 style="color: white"><%= @restaurant.name.capitalize %></h1>
+<div style="color: black">
+	<h3>Menu List</h3>
+	<% @restaurant.restaurant_items.each do |restaurant_item| %>
+		<% item = restaurant_item.item %>
+		<b><%= item.name%></b><br>
+		Category: <%= item.category %><br>
+		Type: <%= item.type_of_dish %><br>
+		Price: <%= restaurant_item.price %><br>
+		<%= button_to 'Remove Item',restaurant_item_path(@restaurant,restaurant_item), method: :delete ,class: "btn btn-primary", style: 'background-color:#333'%><br>
+	<% end %>
+</div>
+<a href="<%= new_item_path %>" ><i class="fa fa-plus fa-2x" aria-hidden="true" style="color: #333">Add Items</i></a>
+<%#= link_to 'Add Items', new_item_path %>

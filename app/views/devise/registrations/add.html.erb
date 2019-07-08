@@ -1,27 +1,29 @@
+<a href="<%= restaurants_list_path%>" style="color: white;font-size:x-large"><i class="fa fa-arrow-left" aria-hidden="true">Back</i></a>
 <h1><%= @restaurant.name.capitalize %></h1>
+<div style="color: black">
 <% @items.each do |item| %>
 	<% restaurant_item_id = RestaurantItem.where(restaurant_id: @restaurant.id, item_id:item.id).first.id %>
-	<%= item.name %>
-	<%= item.category %>
-	<%= item.type_of_dish %>
+	<h3><%= item.name %></h3>
+	<p>Category :<%= item.category %></p>
+	<p><%= item.type_of_dish.capitalize %> Type</p>
 		<% if current_user.cart.cart_items.select{|obj| obj.restaurant_item_id == restaurant_item_id}.empty? %>
 			<%= form_tag cart_items_path, method: :post do %>
-				No of Item <%= text_field_tag :num_of_item %>
+				No of Item :<%= text_field_tag :num_of_item ,value = nil,class: "form-group form-control",style: "width:185px"%>
 				<%= hidden_field_tag 'restaurant_item_id', "#{restaurant_item_id}" %>
-				<%= button_tag "Add", id: "button" %>
+				<%= button_tag "Add", id: "button",class: "btn btn-primary", style: 'background-color:#333' %>
 			<% end %>
 		<% else %>
-			<br />
 			<% cart_item = current_user.cart.cart_items.where(restaurant_item_id: restaurant_item_id).first %>
-			Quantity:<%= cart_item.num_of_item %>
+			Quantity: <b><%= cart_item.num_of_item %></b>
 			<%= form_tag cart_item_path(cart_item), method: :delete do %>
-				<%= button_tag "Remove Item", id: "button" %>
+				<%= button_tag "Remove Item", id: "button",class: "btn btn-primary", style: 'background-color:#333' %>
 			<% end %>
 		<% end %>
 	<br />
 <% end %>
+</div>
 <% unless current_user.cart.cart_items.all.empty? %>
-	<%= link_to "Go to cart", carts_path(current_user) %><br>
+	<%= link_to "Go to cart", carts_path(current_user) ,class: "btn btn-primary", style: 'background-color:#333;color:white'%><br>
 <% end %>
-<%= link_to "Go to Profile Page", profile_path %>
+<%#= link_to "Go to Profile Page", profile_path %>
 

@@ -1,15 +1,16 @@
 <%= form_tag cart_item_path(@cart_item), method: :patch do |form|%>
   <% restaurent_item = @cart_item.restaurant_item %>
-  <h3>
-    Restaurant:<%= restaurent_item.restaurant.name%>
+  <h3 style="color:black">
+    Restaurant: <%= restaurent_item.restaurant.name%>
   </h3>
   <h4>
+    <div style="color:black">
     <% item = restaurent_item.item %>
-    Name:<%= item.name%><br/>
-    Category:<%= item.category %><br/>
-    Type:<%= item.type_of_dish %><br/>
-    price:<%= restaurent_item.price %><br/>
-    Quantity :<%= text_field_tag "num_of_item", "#{@cart_item.num_of_item}" %><br>
-    <%= submit_tag "Make Change" %>
+    Name: <%= item.name%><br/>
+    Category: <%= item.category %><br/>
+    Type: <%= item.type_of_dish %><br/>
+    price: <%= restaurent_item.price %><br/>
+    Quantity :<%= text_field_tag "num_of_item", "#{@cart_item.num_of_item}",class: "form-group form-control",style: "width:auto" %><br>
+    <%= submit_tag "Make Change",class: "btn btn-primary", style: 'background-color:#333' %>
     <% end %>
   </h4>

@@ -1,20 +1,20 @@
-
-<h2>Order History</h2>
-<% order_num = 0 %>
-<% @current_orders.each do |order| %>
-	<h3>Order No.<%= order_num = order_num + 1%></h3>
-	<% order.order_items.each do |order_item| %>
-		<% restaurant_item = order_item.restaurant_item %>
-	  <%= restaurant_item.item.name %><br>
-	  <%= restaurant_item.item.category %><br>
-	  <%= restaurant_item.item.type_of_dish %><br>
-	  <b><%= restaurant_item.restaurant.name %></b><br>
-	  Quantity :<%= order_item.quantity %><br>
-	  Price Per Item :<b><%= restaurant_item.price %></b><br>
+<div style="color: black">
+	<h2>Order History</h2>
+	<% order_num = 0 %>
+	<% @current_orders.each do |order| %>
+		<h3>Order No.<%= order_num = order_num + 1%></h3>
+		<% order.order_items.each do |order_item| %>
+			<% restaurant_item = order_item.restaurant_item %>
+		  <%= restaurant_item.item.name %><br>
+		  <%= restaurant_item.item.category %><br>
+		  <%= restaurant_item.item.type_of_dish %><br>
+		  <b><%= restaurant_item.restaurant.name %></b><br>
+		  Quantity :<%= order_item.quantity %><br>
+		  Price Per Item :<b><%= restaurant_item.price %></b><br>
+		<% end %>
+	<h3>
+			Status:<%= order.status %><br>
+			<%= "-----------------------" %>
+	</h3>
 	<% end %>
-<h3>
-		Status:<%= order.status %><br>
-		<%= "-----------------------" %>
-</h3>
-<% end %>
-<%= link_to "Go to Profile Page", profile_path %>
+</div>

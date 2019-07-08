@@ -1,4 +1,8 @@
-<% @restaurants.each do |restaurant|%>
-  <%= %>
-  	<%= link_to restaurant.name, add_path(restaurant_id: restaurant.id)%><br />	
+<sub style="color: white">Search by item</sub>
+<%= form_tag restaurants_list_path, :method => 'get' do %>
+  <p>
+   	<%= text_field_tag :search, params[:search],class: "form-group form-control",style: "width:185px" %>
+  	<%= submit_tag "Search", :name => nil ,class: "btn btn-primary", style: 'background-color:#333'%>
+  </p>
+  <%= render 'index' %>
 <% end %>

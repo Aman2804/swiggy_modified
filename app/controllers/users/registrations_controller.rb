@@ -34,7 +34,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     
   end
   def restaurants_list
-    @restaurants = Restaurant.all
+    @restaurants = User.search(params[:search])
+  end
+  def search
+    binding.pry
+    @restaurant_item = User.search(params[:search].split("=").last)
+    respond_to :js
   end
   # PUT /resource
   # def update
@@ -74,7 +79,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    binding.pry
     if params[:user][:user_type] == "delivery_patner"
       new_vehicle_path(current_user)
     elsif params[:user][:user_type] == "restaurant"

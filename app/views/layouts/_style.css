@@ -65,4 +65,7 @@
   .style-color{
     color: black
   }
+  a:hover {
+    background-color: none !important;
+  }
 </style>

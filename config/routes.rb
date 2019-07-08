@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       get 'profile', to: 'users/registrations#show'
       get 'restaurants_list', to: 'users/registrations#restaurants_list'
       get 'add', to: 'users/registrations#add'
+      get 'search', to: 'user/registrations#search'
   end
+
   scope path: 'users/:users_id' do
   	resources :addresses, except: :show
     resources :restaurants 

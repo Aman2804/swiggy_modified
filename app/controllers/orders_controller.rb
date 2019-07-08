@@ -29,3 +29,4 @@ class OrdersController < ApplicationController
 		params.require(:order).permit(:restaurant_id,:status,:user_id)
 	end
 end
+ 

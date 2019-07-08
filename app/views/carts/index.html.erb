@@ -2,28 +2,32 @@
 <% restaurants = Array.new %>
 <% @cart_items.each do |cart_item| %>
   <% restaurant_item = cart_item.restaurant_item %>
-  <%= restaurant_item.item.name %><br>
-  <%= restaurant_item.item.category %><br>
-  <%= restaurant_item.item.type_of_dish %><br>
-  <b><%= restaurant_item.restaurant.name %></b><br>
-  Number of Items <%= cart_item.num_of_item %><br>
-  Price Per Item :<b><%= restaurant_item.price %></b><br>
-  <% total = total + restaurant_item.price*cart_item.num_of_item %>
-  <% restaurants << restaurant_item.restaurant_id %>
-  <%= link_to 'Edit', edit_cart_item_path(cart_item) %>
-  <%= link_to 'Destroy', cart_item_path(cart_item), method: :delete, data: { confirm:
-          'Are you sure?' } %>
+  <div style="color: black">
+    <h3><%= restaurant_item.item.name %><br></h3>
+    <%= restaurant_item.item.category %><br>
+    <%= restaurant_item.item.type_of_dish %><br>
+    <b><%= restaurant_item.restaurant.name %></b><br>
+    Number of Items <%= cart_item.num_of_item %><br>
+    Price Per Item :<b><%= restaurant_item.price %></b><br>
+    <% total = total + restaurant_item.price*cart_item.num_of_item %>
+    <% restaurants << restaurant_item.restaurant_id %>
+  </div>
+  <a href="<%= edit_cart_item_path(cart_item) %>" ><i class="fa fa-pencil fa-2x" aria-hidden="true" style="color: black" ></i></a>&nbsp;
+  <a class="ancho-style" href="<%= cart_item_path(cart_item) %>" data-method="delete" onclick="return confirm('Are you sure?')"><i class="fa fa-trash fa-2x" aria-hidden="true" style="color: red" ></i></a>&nbsp;
+  <%#= link_to 'Edit', edit_cart_item_path(cart_item) %>
+  <%# = link_to 'Destroy', cart_item_path(cart_item), method: :delete, data: { confirm:
+          'Are you sure?' } %><br>
 <% end %>
 <% if total == 0 %>
   <h2>You have no item in cart</h2>
 <% else %>
-  <h2>
+  <h2 style="color: black">
     Total:<%= total %>
   </h2>
-<% end %>
-<%=select_tag(:type_of_pay, options_for_select([['Cash', 'cash']],'cash')) %>
+<%=select_tag(:type_of_pay, options_for_select([['Cash', 'cash']],'cash'), {class: "btn btn-primary dropdown-toggle ", style: 'background-color:#333'}) %>
 <%= form_tag orders_path(current_user,restaurants_id: restaurants.uniq), method: :post do %>
   <%= hidden_field_tag 'total',  "#{@total}" %>
   <%= hidden_field_tag 'type_of_pay', "cash" %>
-  <%= button_tag "Make Order", id: "button" %> 
+  <br><%= button_tag "Make Order", id: "button",class: "btn btn-primary", style: 'background-color:#333' %> 
+<% end %>
 <% end %> 
