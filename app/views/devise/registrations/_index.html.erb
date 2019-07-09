@@ -1,6 +1,9 @@
 <h2>Restaurants</h2>
-<% @restaurants.each_with_index do |restaurant,i|%>
- 	<h3 style="color: white">
- 		<%= i+1 %>. <%= link_to restaurant.name, add_path(restaurant_id: restaurant.id), style: "color: white"%>
- 	</h3>
+<% i = 0%>
+<% @restaurants.each do |restaurant|%>
+	<% if restaurant.user.city == current_user.city %>
+	 	<h3 style="color: white">
+	 		<%= i+1 %>. <%= link_to restaurant.name, add_path(restaurant_id: restaurant.id), style: "color: white"%>
+	 	</h3>
+ 	<% end %>
 <% end %>
