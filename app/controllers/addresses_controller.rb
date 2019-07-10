@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+  before_action :user_authentication
   def index
     @addresses = current_user.addresses
   end
@@ -20,7 +21,7 @@ class AddressesController < ApplicationController
   end
   
   def update
-    @address = current_user.address.find(params[:id])
+    @address = current_user.addresses.find(params[:id])
     if @address.update(address_permited_params)
       redirect_to addresses_path
     else
@@ -38,5 +39,9 @@ class AddressesController < ApplicationController
   def address_permited_params
     params.require(:address).permit(:flat_no, :location, :city, :landmark, :address_type)
   end
-
+  def user_authentication
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
 end

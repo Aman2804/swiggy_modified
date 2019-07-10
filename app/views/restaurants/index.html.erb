@@ -1,9 +1,10 @@
-<h3 style="color: white" ><%= link_to "Add Item's", new_item_path, style: "color: white" %></h3>
+<h3 style="color: white" ><%= link_to "Add Item's", new_item_path, style: "color: black" %></h3>
 <% @restaurants.each do |restaurant|%>
   <p style="color: white;font-size: 20px">
   	<%= link_to "#{restaurant.name}", restaurant_path(current_user, restaurant), style: "color: white"%>
-  	<a href="<%= edit_restaurant_path(current_user, restaurant) %>" ><i class="fa fa-pencil " aria-hidden="true" style="color: black;size: 10px" ></i></a>&nbsp;
-  	<a href="<%= new_restaurant_item_path(restaurant) %>" ><i class="fa fa-cutlery " aria-hidden="true" style="color: black;size: 10px" >Add Item to menu</i></a>&nbsp;
-  	<a href="<%= orders_path(current_user, restaurant_id: restaurant) %>" ><i class="fa fa-shopping-cart" aria-hidden="true" style="color: black;size: 10px" >All Order</i></a>&nbsp;
+  	<a href="<%= edit_restaurant_path(current_user, restaurant) %>" ><i class="fa fa-pencil " aria-hidden="true" style="color: azure;size: 10px" ></i></a>&nbsp;
+  	<a href="<%= restaurant_path(current_user,restaurant) %>" data-method="delete" onclick="return confirm('Are you sure?')"><i class="fa fa-trash" aria-hidden="true" style="color: red;size: 10px" ></i></a>&nbsp;
+  	<a href="<%= new_restaurant_item_path(restaurant) %>" ><i class="fa fa-cutlery " aria-hidden="true" style="color: azure;size: 10px" >Add Item to menu</i></a>&nbsp;
+  	<a href="<%= orders_path(current_user, restaurant_id: restaurant) %>" ><i class="fa fa-shopping-cart" aria-hidden="true" style="color: azure;size: 10px" >All Order</i></a>&nbsp;
   </p>
 <% end %>

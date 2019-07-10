@@ -25,5 +25,3 @@
 <% unless current_user.cart.cart_items.all.empty? %>
 	<%= link_to "Go to cart", carts_path(current_user) ,class: "btn btn-primary", style: 'background-color:#333;color:white'%><br>
 <% end %>
-<%#= link_to "Go to Profile Page", profile_path %>
-

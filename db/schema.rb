@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_06_120234) do
+ActiveRecord::Schema.define(version: 2019_07_09_075618) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "flat_no"
@@ -49,6 +49,16 @@ ActiveRecord::Schema.define(version: 2019_07_06_120234) do
     t.string "type_of_coupon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "vehicle_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_deliveries_on_order_id"
+    t.index ["vehicle_id"], name: "index_deliveries_on_vehicle_id"
   end
 
   create_table "favourite_restaurants", force: :cascade do |t|

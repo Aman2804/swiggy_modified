@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+	before_action :user_authentication
 	def index
 		@orders = Order.where(restaurant_id: params[:restaurant_id].to_i).includes(:order_items)
 	end
@@ -18,7 +19,13 @@ class OrdersController < ApplicationController
 	def update
 		@order = Order.find(params[:id])
 		@order.status = params[:value]
+		vehicle_id = Vehicle.ids.sample
 		@order.update(params.permit(:status))
+		if params[:value] == "Accept" && @order.delivery.nil?
+			@order.create_delivery(status: "Not delivered",vehicle_id: vehicle_id)
+		elsif @order.delivery.present? && params[:value] == "Reject"
+			 	@order.delivery.destroy
+		end
 		redirect_to orders_path(params[:users_id],restaurant_id: @order.restaurant_id)
 	end
 	def show
@@ -28,5 +35,10 @@ class OrdersController < ApplicationController
 	def order_params
 		params.require(:order).permit(:restaurant_id,:status,:user_id)
 	end
+	def user_authentication
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
 end
  

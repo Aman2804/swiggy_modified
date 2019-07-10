@@ -1,4 +1,5 @@
 class RestaurantItemsController < ApplicationController
+	before_action :user_authentication
 	def new
 		@item = Item.all
 		@restaurant = Restaurant.find(params[:restaurants_id])
@@ -17,5 +18,11 @@ class RestaurantItemsController < ApplicationController
 		RestaurantItem.find(params[:id]).destroy
 		redirect_to restaurant_path(current_user,params[:restaurants_id])
 	end
+	private
+	def user_authentication
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
 end
  

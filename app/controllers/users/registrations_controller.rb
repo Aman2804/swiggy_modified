@@ -20,6 +20,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # end
   end
 
+  def index
+  end
+
   # GET /resource/edit
   # def edit
   #   super
@@ -27,6 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #profile
   def show
   end
+
   def current_role
     @arr = Array.new
     current_user.roles.map do |e|

@@ -15,8 +15,10 @@
 	        <li><a href="<%= restaurants_list_path %>">Make Order</a></li>
 	        <% end %>
 	        <li class="dropdown">
-		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">	Address
+	        	<% if current_user.current_role != "delivery_patner"%>
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Address
 		          <span class="caret"></span></a>
+		         <% end %>
 		          <ul class="dropdown-menu">
 		            <li><a class="dropdown-item" href="<%=new_address_path(current_user)%>">Add address</a></li>
 		            <li><a class="dropdown-item" href="<%=addresses_path(current_user)%>">Show all Address</a></li>
@@ -29,6 +31,15 @@
 		          <ul class="dropdown-menu">
 		            <li><a class="dropdown-item" href="<%=restaurants_path(current_user)%>">Restaurant's</a></li>
 		            <li><a class="dropdown-item" href="<%= new_restaurant_path(current_user) %>">Register a Restaurant</a></li>
+		          </ul>
+		        </li>
+		        <% if current_user.current_role == "delivery_patner" %>
+		        <li class="dropdown">
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">	Deliveries<span class="caret"></span></a>
+		        <% end %>	
+		          <ul class="dropdown-menu">
+		            <li><a class="dropdown-item" href="<%=delivery_path %>">Deliveries</a></li>
+		            <li><a class="dropdown-item" href="<%= vehicle_path(current_user,1) %>">Vehicle Detail</a></li>
 		          </ul>
 		        </li>
 	      </ul>

@@ -1,11 +1,7 @@
-<div class="container" style="align-content:center" >
-  <div class="d-flex justify-content-center h-100" style="margin-left: 400px">
-    <div class="card">
-      <div class="card-header" style="margin-left: 115px">
-        <h3>Sign up</h3>
-      </div>
-      <div class="card-body" style="align-content: center;">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="container" style="align-content:center;">
+  <h3 style="color: black;margin-left: 17px"><b>SignUp</b></h3>
+  <div class="col-sm-3 col-md-6 col-lg-4" style="color:black">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <div class="error_messages">
             <%= render "devise/shared/error_messages", resource: resource %>
           </div>
@@ -55,7 +51,5 @@
             <%= f.submit "Sign up",class: "btn btn-primary", style: 'width:-webkit-fill-available;background-color:#333' %>
           </div>
         <% end %>
-      </div>
     </div>
   </div>
-</div>

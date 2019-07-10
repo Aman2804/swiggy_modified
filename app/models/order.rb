@@ -5,4 +5,6 @@ class Order < ApplicationRecord
 	has_one :payment, dependent: :destroy
 	belongs_to :restaurant
 	has_one :role, dependent: :destroy
+	has_one  :delivery, dependent: :destroy
+	validates :status, presence: true
 end

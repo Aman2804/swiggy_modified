@@ -5,4 +5,5 @@ class RestaurantItem < ApplicationRecord
 	has_many :carts, through: :cart_items
 	has_many :order_items, dependent: :destroy
 	has_many :restaurant_items, through: :order_items
+	validates :price, presence: true,numericality: true
 end

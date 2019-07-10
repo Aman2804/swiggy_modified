@@ -1,4 +1,5 @@
 class CartItemsController < ApplicationController
+	before_action :user_authentication
 	before_action :find_cart_item,  only: [:edit,:update,:destroy]
 	def create
 		@restaurant = RestaurantItem.find(params[:restaurant_item_id]).restaurant_id
@@ -19,5 +20,9 @@ class CartItemsController < ApplicationController
 	def find_cart_item
 		@cart_item = CartItem.find(params[:id])
 	end
-		
+	def user_authentication
+    unless user_signed_in?
+      redirect_to root_path
+    end
+	end
 end

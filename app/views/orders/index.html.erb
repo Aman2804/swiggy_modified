@@ -1,3 +1,4 @@
+<div style="color: black">
 <% order_num = 0 %>
 <% @orders.each do |order| %>
 	<h3>
@@ -9,11 +10,17 @@
 		Quantity:<%= order_item.quantity %>
 	</h4>
 	<% end %>
-	<%= link_to "Accept", order_path(order.user_id,order.id,value: "Accept"), method: :patch %>||
-		<%= link_to "Reject", order_path(order.user_id,order.id,value: "Reject"), method: :patch %><br/>
-	Status_of_order:<b><%= order.status%></b><br/>
+
+	<% if order.status == "Accept"%>
+		
+	<% end %>
+	
+	<%= link_to "Accept", order_path(order.user_id,order.id,value: "Accept"), method: :patch ,style: "color: blue"%>||
+		<%= link_to "Reject", order_path(order.user_id,order.id,value: "Reject"), method: :patch ,style: "color: red"%><br/>
+	Status_of_order:<b style="color: green"><%= order.status%></b><br/>
 <% end %>
 <% if order_num == 0%>
 	<h2>You have No order</h2>
 	<h2>-----******-----</h2>
 <% end %> 
+</div>

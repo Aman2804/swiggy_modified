@@ -3,7 +3,10 @@
 <% @restaurants.each do |restaurant|%>
 	<% if restaurant.user.city == current_user.city %>
 	 	<h3 style="color: white">
-	 		<%= i+1 %>. <%= link_to restaurant.name, add_path(restaurant_id: restaurant.id), style: "color: white"%>
+	 		<%= i = i+1 %>. <%= link_to restaurant.name, add_path(restaurant_id: restaurant.id), style: "color: white"%>
 	 	</h3>
  	<% end %>
+<% end %>
+<% if i == 0 %>
+	<h1>No Restaurant Available.....</h1>
 <% end %>

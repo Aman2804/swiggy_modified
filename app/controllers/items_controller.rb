@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
+	before_action :user_authentication
 	before_action :check_user_role
 	before_action :find_item,only: [:edit,:update,:destroy]
 	def index
-		# @restaurant_id = params[:restaurant_id]
 		@items = Item.all
 	end
 	def new
@@ -38,4 +38,9 @@ class ItemsController < ApplicationController
 	def find_item
 		@item = Item.find(params[:id])
 	end
+	def user_authentication
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
 end

@@ -1,6 +1,6 @@
 class RolesController < ApplicationController
-	before_action :validate_for_create, only: [:create]
 	before_action :validate_to_access
+	before_action :validate_for_create, only: [:create]
 	before_action :find_user_role, only: [:edit,:update,:destroy]
 	def index
 		@roles = current_user.roles

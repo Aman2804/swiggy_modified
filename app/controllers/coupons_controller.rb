@@ -61,6 +61,12 @@ class CouponsController < ApplicationController
     end
   end
 
+  def apply_coupon
+    @cart_items = current_user.cart.cart_items
+    per_off = Coupon.where(coupon_name: params[:coupon]).pluck(:per_off)
+    redirect_to carts_path(current_user,coupon: params[:coupon],per_off: per_off )
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_coupon

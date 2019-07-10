@@ -1,4 +1,5 @@
 class VehiclesController < ApplicationController
+	before_action :user_authentication
 	def new
 		@vehicle = current_user.build_vehicle
 	end
@@ -19,16 +20,21 @@ class VehiclesController < ApplicationController
 		redirect_to vehicle_path(current_user,@vehicle)
 	end
 	def show
-		@vehicle = Vehicle.find(params[:id])
+		@vehicle = current_user.vehicle
 	end
 	def destroy
 		@vehicle = Vehicle.find(params[:id])
 		@vehicle.destroy
 		redirect_to new_vehicle_path(current_user,@vehicle)	
 	end	
-
+	
 	private
 	def vehicle_params
 		params.require(:vehicle).permit(:vehicle,:vehicle_name)
 	end
+	def user_authentication
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
 end

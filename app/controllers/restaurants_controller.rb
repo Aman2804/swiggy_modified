@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+	before_action :user_authentication
 	before_action :check_user_type
 	def index
 		@restaurants = current_user.restaurants
@@ -39,4 +40,9 @@ class RestaurantsController < ApplicationController
 			redirect_to profile_path
 		end
 	end
+	def user_authentication
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
 end

@@ -9,8 +9,9 @@
       </div>
       <div class="form-group" >
         <%= add.label :location %><br />
-        <%= add.text_area :location,class: "form-control" %>
+        <%= add.text_area :location,class: "form-control",onblur: "validate_fist()" %>
       </div>
+      <span id="Address_error" style="color:red"></span>
       <div class="form-group" >
         <%= add.label :landmark %><br />
         <%= add.text_field :landmark,class: "form-control" %>
@@ -23,7 +24,30 @@
         <%= add.label :address_type %><sub>(not mandatory)</sub><br />	
         <%= add.text_field :address_type,class: "form-control"%>
       </div>
-        <%= add.submit 'Add address',class: "btn btn-inverse", style: 'width:-webkit-fill-available;background-color:#333;color:black;' %>
+        <%= add.submit 'Add address',class: "btn btn-primary", style: 'width:-webkit-fill-available;background-color:#333;color:white' %>
     <% end %>
   </div>
 </div>
+
+<script>
+  function validate_fist()
+    { 
+    var first = document.getElementById("address_location").value
+     // var value1 = first.match(/[^a-zA-Z]/g);
+    if (first=="" )
+      document.getElementById("Address_error").innerHTML="location can't be blank";
+    else if  (Boolean(first.match(else if  (Boolean(first.match(/\d/g)))
+    {
+      document.getElementById("Address_error").innerHTML="location can't be a no.";
+    }/\d/g)))
+    {
+      document.getElementById("Address_error").innerHTML="location can't be a no.";
+    }
+    else if (Boolean(Boolean(first.match(/\W/g))))
+      {
+        document.getElementById("Address_error").innerHTML="location can't be a special char.";
+      }
+    else
+      document.getElementById("Address_error").innerHTML="";
+    }
+</script>

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :coupons
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root "welcome#index"
   get 'welcome/index'
@@ -15,7 +14,9 @@ Rails.application.routes.draw do
       get 'search', to: 'user/registrations#search'
       get 'current_role', to: 'users/registrations#current_role'
       patch 'update_current_role', to: 'users/registrations#update_current_role'
+      get 'users', to: 'users/registrations#index'
   end
+
 
   scope path: 'users/:users_id' do
   	resources :addresses, except: :show
@@ -33,5 +34,7 @@ Rails.application.routes.draw do
   end
     resources :cart_items
     resources :items
-
+    resources :coupons
+    get 'apply_coupon', to: 'coupons#apply_coupon'
+    get 'delivery', to: 'deliveries#delivery'
 end

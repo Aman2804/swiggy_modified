@@ -11,17 +11,11 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super
-    def after_sign_in_path_for(resources)
-      profile_path 
-    end
   end
 
   # DELETE /resource/sign_out
   def destroy
     super
-    def after_sign_out_path_for(resources)
-      new_user_session_path
-    end
   end
 
   # protected

@@ -27,10 +27,14 @@ class User < ApplicationRecord
     end
   end
   def self.search(search)
-    if search
-      Item.where("name Like ?","%#{search}%").map{|o| o.restaurants}.first
-    else
+    if  search.nil? || search.empty?
       Restaurant.all
+    else
+      # binding.pry
+      a = Item.where("name Like ?","%#{search}%").map{|o| o.restaurants}.first
+      if a.nil?
+        return []
+      end
     end
   end
 end
