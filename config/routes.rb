@@ -19,18 +19,21 @@ Rails.application.routes.draw do
 
 
   scope path: 'users/:users_id' do
-  	resources :addresses, except: :show
+    resources :addresses, except: :show
     resources :restaurants 
     resources :roles
     resources :vehicles
     resources :carts
     resources :orders
-	end
+  end
   scope path:'oders/:orders_id' do 
       resources :payments
   end
   scope path:'restaurants/:restaurants_id' do 
       resources :restaurant_items
+  end
+  scope path: 'restaurants/:restaurants_id',as: 'restaurants' do
+    resources :addresses, except: :index
   end
     resources :cart_items
     resources :items

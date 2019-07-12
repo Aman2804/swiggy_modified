@@ -1,0 +1,12 @@
+<div class="container" style="margin-left: 54px">
+    <h3 class="style-color"><b>Address</b></h3>
+    <p class="style-color">
+      <b>Flat No. </b> <%= @role_address.flat_no %><br />
+      <b>Location. </b><%= @role_address.location %><br />
+      <b>City. </b><%= @role_address.city %><br />
+      <b>Landmark. </b><%= @role_address.landmark %><br />
+      <b>Add Type. </b><%= @role_address.address_type %><br />
+      <a href="<%= edit_restaurants_address_path(@role_address.addressable_id,@role_address) %>" ><i class="fa fa-pencil fa-2x" aria-hidden="true" style="color: azure" ></i></a>&nbsp;
+      <a href="<%= restaurants_address_path(@role_address.addressable_id,@role_address) %>" data-method="delete" onclick="return confirm('Are you sure?')"><i class="fa fa-trash fa-2x" aria-hidden="true" style="color: red" ></i></a>&nbsp;
+    </p>
+</div>

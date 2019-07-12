@@ -11,7 +11,7 @@ class RestaurantsController < ApplicationController
 		@restaurant = current_user.restaurants.build(restaurants_params)
 		@restaurant.save
 		if @restaurant.save
-			redirect_to restaurants_path
+			redirect_to new_restaurants_address_path(@restaurant)
 		else
 			render 'new'
 		end

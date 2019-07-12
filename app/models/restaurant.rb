@@ -5,5 +5,5 @@ class Restaurant < ApplicationRecord
 	has_many  :orders, dependent: :destroy
 	has_many  :favourite_restaurants, dependent: :destroy
 	validates :name,presence: true, uniqueness: true
-	has_one 	:addresses, as: :addressable
+	has_one 	:address, as: :addressable
 end
