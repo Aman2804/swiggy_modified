@@ -13,10 +13,11 @@ gem 'ruby-graphviz'
 gem 'devise'
 # pry gem for the debugging
 gem 'pry'
-# Use sqlite3 as the database for Active Record
 #gem for the elsstic search
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
+gem 'searchkick'
+# Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

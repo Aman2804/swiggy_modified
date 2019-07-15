@@ -243,6 +243,10 @@ GEM
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
+    searchkick (4.0.2)
+      activemodel (>= 5)
+      elasticsearch (>= 6)
+      hashie
     selenium-webdriver (3.142.3)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -306,6 +310,7 @@ DEPENDENCIES
   rails_admin (~> 2.0.0.beta)
   ruby-graphviz
   sass-rails (~> 5.0)
+  searchkick
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)

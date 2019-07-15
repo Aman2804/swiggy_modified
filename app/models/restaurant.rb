@@ -1,4 +1,5 @@
 class Restaurant < ApplicationRecord
+	searchkick
 	belongs_to :user
 	has_many  :restaurant_items, dependent: :destroy
 	has_many  :items, through: :restaurant_items
