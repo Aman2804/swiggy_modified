@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_09_075618) do
+ActiveRecord::Schema.define(version: 2019_07_16_122553) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
     t.string "flat_no"
@@ -19,15 +22,15 @@ ActiveRecord::Schema.define(version: 2019_07_09_075618) do
     t.string "landmark"
     t.string "address_type", default: "home"
     t.string "addressable_type"
-    t.integer "addressable_id"
+    t.bigint "addressable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "cart_id"
-    t.integer "restaurant_item_id"
+    t.bigint "cart_id"
+    t.bigint "restaurant_item_id"
     t.integer "num_of_item"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_07_09_075618) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
@@ -52,8 +55,8 @@ ActiveRecord::Schema.define(version: 2019_07_09_075618) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "vehicle_id"
+    t.bigint "order_id"
+    t.bigint "vehicle_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,8 +65,8 @@ ActiveRecord::Schema.define(version: 2019_07_09_075618) do
   end
 
   create_table "favourite_restaurants", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "restaurant_id"
+    t.bigint "user_id"
+    t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_favourite_restaurants_on_restaurant_id"
@@ -79,8 +82,8 @@ ActiveRecord::Schema.define(version: 2019_07_09_075618) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "restaurant_item_id"
+    t.bigint "order_id"
+    t.bigint "restaurant_item_id"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -89,8 +92,8 @@ ActiveRecord::Schema.define(version: 2019_07_09_075618) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "restaurant_id"
+    t.bigint "user_id"
+    t.bigint "restaurant_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -101,15 +104,15 @@ ActiveRecord::Schema.define(version: 2019_07_09_075618) do
   create_table "payments", force: :cascade do |t|
     t.integer "final_amount"
     t.string "type_of_pay"
-    t.integer "order_id"
+    t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
   create_table "restaurant_items", force: :cascade do |t|
-    t.integer "restaurant_id"
-    t.integer "item_id"
+    t.bigint "restaurant_id"
+    t.bigint "item_id"
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -120,14 +123,14 @@ ActiveRecord::Schema.define(version: 2019_07_09_075618) do
   create_table "restaurants", force: :cascade do |t|
     t.string "designation"
     t.string "name"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "user_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -136,7 +139,7 @@ ActiveRecord::Schema.define(version: 2019_07_09_075618) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.integer "contact"
+    t.bigint "contact"
     t.string "gender"
     t.string "city"
     t.string "email", default: "", null: false
@@ -152,7 +155,7 @@ ActiveRecord::Schema.define(version: 2019_07_09_075618) do
   end
 
   create_table "vehicles", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "vehicle"
     t.string "vehicle_name"
     t.datetime "created_at", null: false
